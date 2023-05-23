@@ -1,0 +1,19 @@
+# Ignore the entire build directory
+/build/
+
+# Ignore macOS specific files
+.DS_Store
+
+# Ignore CMake specific files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+Makefile
+
+# Ignore Visual Studio specific files if ever used
+*.suo
+*.user
+*.sdf
+.ipch/
+*.opensdf
