@@ -68,7 +68,7 @@ tresult PLUGIN_API Lemon_GainProcessor::process (Vst::ProcessData& data)
 {
 	//--- First : Read inputs parameter changes-----------
 
-    /*if (data.inputParameterChanges)
+    if (data.inputParameterChanges)
     {
         int32 numParamsChanged = data.inputParameterChanges->getParameterCount ();
         for (int32 index = 0; index < numParamsChanged; index++)
@@ -80,10 +80,18 @@ tresult PLUGIN_API Lemon_GainProcessor::process (Vst::ProcessData& data)
                 int32 numPoints = paramQueue->getPointCount ();
                 switch (paramQueue->getParameterId ())
                 {
+                    case kGainId:
+                        // We only use the last point in the queue.
+                        if (paramQueue->getPoint (numPoints - 1, sampleOffset, value) ==
+                            kResultTrue)
+                        {
+                            fGain = (float)value;
+                        }
+                        break;
 				}
 			}
 		}
-	}*/
+	}
 	
 	//--- Here you have to implement your processing
 

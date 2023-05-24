@@ -4,11 +4,16 @@
 
 #include "lemongaincontroller.h"
 #include "lemongaincids.h"
+#include "lemongainparamids.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
 
+
+
 using namespace Steinberg;
+using namespace Steinberg::Vst; // This adds ParameterInfo::kCanAutomate amoung others
 
 namespace LemonLive {
+
 
 //------------------------------------------------------------------------
 // Lemon_GainController Implementation
@@ -25,6 +30,16 @@ tresult PLUGIN_API Lemon_GainController::initialize (FUnknown* context)
 	}
 
 	// Here you could register some parameters
+    
+    // GainParameter
+    parameters.addParameter(
+        STR16("Gain"),    // Title
+        STR16(""),        // Units
+        0,                // Step count (0 for continuous parameters)
+        0.5,              // Default normalized value
+        ParameterInfo::kCanAutomate, // Parameter flags
+        kGainId           // Parameter ID
+    );
 
 	return result;
 }
